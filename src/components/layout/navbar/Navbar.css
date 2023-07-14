@@ -1,11 +1,11 @@
 .navContainer{
     width: 100%;
-    background-color: gray;
+    background-color: #304ffe;
     height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: antiquewhite;
+    color: #fafafa;
     padding-inline: 2rem;
 }
 
@@ -15,3 +15,19 @@
     gap: 1rem;
     
 }
+
+.buttonContainer{
+    display:flex;
+    justify-content: space-between;
+    color: black;
+}
+
+Button{
+    display: flex;
+    flex-direction: column;
+}
+
+.navBarTitle{
+    font-size: 1.5rem;
+}
+
