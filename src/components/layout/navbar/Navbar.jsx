@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import CartWidgetContainer from "../../common/cartWidget/CartWidgetContainer";
 import "./Navbar.css"
-import { Link, Outlet } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -32,7 +32,6 @@ const Navbar = () => {
 
         <CartWidgetContainer />
       </div>
-      <Outlet />
     </div>
   );
 };
