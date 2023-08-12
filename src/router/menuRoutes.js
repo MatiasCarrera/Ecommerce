@@ -1,7 +1,7 @@
 import ItemListContainer from "../components/pages/itemList/ItemListContainer";
 import ItemDetailContainer from "../components/pages/itemDetail/ItemDetailContainer";
-import CartContainer from "../components/pages/cart/cartContainer";
 import CheckoutContainer from "../components/pages/checkout/CheckoutContainer";
+import CartContainer from "../components/pages/cart/CartContainer";
 
 
 
