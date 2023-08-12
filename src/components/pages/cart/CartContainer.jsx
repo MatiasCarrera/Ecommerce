@@ -4,29 +4,26 @@ import { Button } from "@mui/material";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-
 const CartContainer = () => {
   const { cart, clearCart, deleteById, getTotalPrice } =
     useContext(CartContext);
 
-    let limpiar =()=>{
-Swal.fire({
-  title: "Estas seguro de vaciar tu carrito?",
-  showDenyButton: true,
-  showCancelButton: false,
-  confirmButtonText: "Si, vaciar",
-  denyButtonText: `No, no vaciar`,
-}).then((result) => {
-  if (result.isConfirmed) {
-    clearCart()
-    Swal.fire("Carrito vaciado", "", "success");
-  } else if (result.isDenied) {
-    Swal.fire("No vaciaste el carrito", "", "info");
-  }
-});
-    };
-
-
+  let limpiar = () => {
+    Swal.fire({
+      title: "Estas seguro de vaciar tu carrito?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Si, vaciar",
+      denyButtonText: `No, no vaciar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearCart();
+        Swal.fire("Carrito vaciado", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("No vaciaste el carrito", "", "info");
+      }
+    });
+  };
 
   let precioTotal = getTotalPrice();
 
@@ -60,7 +57,7 @@ Swal.fire({
           </Button>
           <h2>El total es:{precioTotal}</h2>
 
-          <Link to='/checkout'>
+          <Link to="/checkout">
             <button>Terminar compra</button>
           </Link>
         </>
