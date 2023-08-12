@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
 import { Button } from "@mui/material";
-import Swal from "sweetalert2";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { CartContext } from "../../../context/CartContext";
 
-const CartContainer = () => {
+const CartContaner = () => {
   const { cart, clearCart, deleteById, getTotalPrice } =
     useContext(CartContext);
 
@@ -68,4 +68,4 @@ const CartContainer = () => {
   );
 };
 
-export default CartContainer;
+export default CartContaner;
