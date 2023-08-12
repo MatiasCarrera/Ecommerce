@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { routes } from "./menuRoutes";
 import Layout from "../components/layout/layout";
+import ProtectedRoutes from "./ProtectedRoutes";
+import Dashboard from "../components/pages/dashboard/Dashboard";
+
 
 const AppRouter = () => {
   return (
@@ -10,7 +13,9 @@ const AppRouter = () => {
           <Route key={id} path={path} element={<Element />} />
         ))}
       </Route>
-
+<Route element={<ProtectedRoutes/>}>
+<Route path="/dashboard" element={<Dashboard/>}></Route>
+</Route>
       <Route path="*" element={<h1>404- Not Found</h1>} />
     </Routes>
   );

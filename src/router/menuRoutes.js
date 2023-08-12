@@ -3,6 +3,8 @@ import ItemDetailContainer from "../components/pages/itemDetail/ItemDetailContai
 import CartContainer from "../components/pages/cart/cartContainer";
 import CheckoutContainer from "../components/pages/checkout/CheckoutContainer";
 
+
+
 export const routes = [
   {
     id: "home",
@@ -29,4 +31,7 @@ export const routes = [
     path: "/checkout",
     Element: CheckoutContainer,
   },
-];
+]
+
+
+

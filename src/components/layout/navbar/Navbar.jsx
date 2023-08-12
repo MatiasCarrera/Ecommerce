@@ -5,6 +5,8 @@ import "./Navbar.css"
 import { Link,  } from "react-router-dom";
 
 const Navbar = () => {
+
+  let userRol = 'admin'
   return (
     <div>
       <div className="navContainer">
@@ -12,9 +14,9 @@ const Navbar = () => {
           <h4 className="navBarTitle">TODOSAMSUNG</h4>
         </Link>
         <ButtonGroup
-          variant="text"
+          variant="contained"
           aria-label="text button group"
-          sx={{ colour: "secondary" }}
+          sx={{ gap: ".2rem" }}
         >
           <Link to="/">
             <Button>Todo</Button>
@@ -29,6 +31,8 @@ const Navbar = () => {
             <Button>TV</Button>
           </Link>
         </ButtonGroup>
+
+        {userRol === "admin" && <Link to="/dashboard">Admin</Link>}
 
         <CartWidgetContainer />
       </div>

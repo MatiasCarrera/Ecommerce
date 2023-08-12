@@ -1,47 +1,73 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { CartContext } from "../../../context/CartContext";
+import { db } from "../../../firebaseConfig";
+import { addDoc, collection, serverTimestamp, updateDoc, doc} from "firebase/firestore";
+import { Button } from "@mui/material";
 
 const CheckoutContainer = () => {
-
-  const navigate = useNavigate()
-
-
+  const { cart, getTotalPrice } = useContext(CartContext);
+  const [orderId, setOrderId] = useState("");
   const [userData, setUserData] = useState({
     name: "",
-    lastName: "",
+    phone: "",
+    email: "",
   });
 
-  const funcionDelFormulario = (evento) => {
+  let total = getTotalPrice();
+
+  const handleSubmit = (evento) => {
     evento.preventDefault();
 
-    console.log(userData);
+    let order = {
+      buyer: userData,
+      items: cart,
+      total,
+      date: serverTimestamp(),
+    };
 
-    navigate('/')
+    let ordersCollections = collection(db, "orders");
+    addDoc(ordersCollections, order).then((res) => setOrderId(res.id));
+
+    cart.forEach((elemento)=>{
+      updateDoc(doc(db,'products', elemento.id) , { stock: elemento.stock - elemento.quantity });
+    })
   };
 
-  const funcionInput = (evento) => {
+  const handleChange = (evento) => {
     setUserData({ ...userData, [evento.target.name]: evento.target.value });
   };
 
   return (
     <div>
-      <h1>Checkout</h1>
-      <form onSubmit={funcionDelFormulario}>
-        <input
-          type="text"
-          placeholder="Ingrese su nombre"
-          name="nombre"
-          onChange={funcionInput}
-        />
-        <input
-          type="text"
-          placeholder="Ingrese su apellido"
-          name="apellido"
-          onChange={funcionInput}
-        />
-        <button type="submit">Enviar</button>
-        <button type="button">Cancelar</button>
-      </form>
+      
+
+      {orderId ? (
+        <h3>Su numero de compra es {orderId}</h3>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Ingrese su nombre"
+            name="name"
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="Ingrese su celular"
+            name="phone"
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="Ingrese su Email"
+            name="email"
+            onChange={handleChange}
+          />
+          <Button variant="contained" type="submit">
+            Comprar
+          </Button>
+        </form>
+      )}
     </div>
   );
 };
